@@ -4,10 +4,10 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 
 @IonicPage()
 @Component({
-  selector: 'page-create-user-example',
-  templateUrl: 'create-user-example.html',
+  selector: 'page-login',
+  templateUrl: 'login.html',
 })
-export class CreateUserExamplePage {
+export class LoginPage {
   model: User;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private toast: ToastController, private userProvider: UsersProvider) {
@@ -16,10 +16,10 @@ export class CreateUserExamplePage {
     this.model.password = 'pistol';
   }
 
-  createAccount() {
-    this.userProvider.createAccount(this.model.email, this.model.password)
+  login() {
+    this.userProvider.login(this.model.email, this.model.password)
       .then((result: any) => {
-        this.toast.create({ message: 'Usuário criado com sucesso. Token: ' + result.token, position: 'botton', duration: 3000 }).present();
+        this.toast.create({ message: 'Usuário logado com sucesso. Token: ' + result.token, position: 'botton', duration: 3000 }).present();
 
         //Salvar o token no Ionic Storage para usar em futuras requisições.
         //Redirecionar o usuario para outra tela usando o navCtrl
@@ -27,7 +27,7 @@ export class CreateUserExamplePage {
         //this.navCtrl.setRoot()
       })
       .catch((error: any) => {
-        this.toast.create({ message: 'Erro ao criar o usuário. Erro: ' + error.error, position: 'botton', duration: 3000 }).present();
+        this.toast.create({ message: 'Erro ao efetuar login. Erro: ' + error.error, position: 'botton', duration: 3000 }).present();
       });
   }
 }

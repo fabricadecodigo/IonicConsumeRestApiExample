@@ -1,24 +1,29 @@
 import { UserDetailPage } from './../user-detail/user-detail';
 import { UsersProvider } from './../../providers/users/users';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, InfiniteScroll } from 'ionic-angular';
+import { ViewChild } from '@angular/core';
 
 @IonicPage()
 @Component({
-  selector: 'page-users-example',
-  templateUrl: 'users-example.html',
+  selector: 'page-user-list',
+  templateUrl: 'user-list.html',
 })
-export class UsersExamplePage {
-  users: any[] = [];
-  page: number = 1;
+export class UserListPage {
+  users: any[];
+  page: number;
+  @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private toast: ToastController, private userProvider: UsersProvider) { }
 
   ionViewDidEnter() {
-    this.getAllUsers(this.page, null);
+    this.users = [];
+    this.page = 1;
+    this.infiniteScroll.enable(true);
+    this.getAllUsers(this.page);
   }
 
-  getAllUsers(page: number, infiniteScroll: any) {
+  getAllUsers(page: number) {
     this.userProvider.getAll(page)
       .then((result: any) => {
         for (var i = 0; i < result.data.length; i++) {
@@ -26,10 +31,10 @@ export class UsersExamplePage {
           this.users.push(user);
         }
 
-        if (infiniteScroll) {
-          infiniteScroll.complete();
+        if (this.infiniteScroll) {
+          this.infiniteScroll.complete();
           if (this.users.length == result.total) {
-            infiniteScroll.enable(false);
+            this.infiniteScroll.enable(false);
           }
         }
       })
@@ -38,10 +43,10 @@ export class UsersExamplePage {
       });
   }
 
-  getUsers(infiniteScroll) {
+  getUsers() {
     setTimeout(() => {
       this.page += 1;
-      this.getAllUsers(this.page, infiniteScroll);
+      this.getAllUsers(this.page);
     }, 500);
   }
 

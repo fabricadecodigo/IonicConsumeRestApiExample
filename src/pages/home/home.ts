@@ -11,16 +11,16 @@ export class HomePage {
 
   }
 
-  openExampleCreateUser() {
-    this.navCtrl.push('CreateUserExamplePage');
+  openCreateAccount() {
+    this.navCtrl.push('CreateAccountPage');
   }
 
-  openExampleLogin() {
-    this.navCtrl.push('LoginExamplePage');
+  openLogin() {
+    this.navCtrl.push('LoginPage');
   }
 
-  openExampleCRUD() {
-    this.navCtrl.push('UsersExamplePage');
+  openListUsers() {
+    this.navCtrl.push('UserListPage');
   }
 
 }
