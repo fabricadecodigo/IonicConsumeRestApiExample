@@ -11,4 +11,16 @@ export class HomePage {
 
   }
 
+  openExampleCreateUser() {
+    this.navCtrl.push('CreateUserExamplePage');
+  }
+
+  openExampleLogin() {
+    this.navCtrl.push('LoginExamplePage');
+  }
+
+  openExampleCRUD() {
+    this.navCtrl.push('UsersExamplePage');
+  }
+
 }
