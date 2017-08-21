@@ -10,22 +10,24 @@ Run the command below to install the dependencies
 $ npm install
 ```
 
-Then, to run it in Android
+Then, to run it in a Browser
+
+```bash
+$ ionic serve
+```
+
+Or to run it in a Device
+
+Android
 
 ```bash
 $ ionic cordova platform add android
 $ ionic cordova run android
 ```
 
-Or in iOS
+iOS
 
 ```bash
 $ ionic cordova platform add ios
 $ ionic cordova run ios
-```
-
-Or in Browser
-
-```bash
-$ ionic serve
 ```
