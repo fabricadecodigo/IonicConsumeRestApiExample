@@ -1,4 +1,3 @@
-import { UserDetailPage } from './../user-detail/user-detail';
 import { UsersProvider } from './../../providers/users/users';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, InfiniteScroll } from 'ionic-angular';
